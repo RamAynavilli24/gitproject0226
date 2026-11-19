@@ -1,0 +1,10 @@
+git clone - to clone the project into your machine
+git log --onelien -> To see your commits in one line
+
+git config --global user.name admin1
+the above command to config globally. For local setup use the below command
+git config --local user.name admin1
+These are the git commands and we a  lot commands to perform the operations.
+In comming classes we will see revert,reset,stash,state and also branching, 
+pull request, push and merging much more.
+Interesting right.... Let start 
