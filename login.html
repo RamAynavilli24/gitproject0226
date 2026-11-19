@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f3f4f6;
+      padding: 1rem;
+    }
+
+    .login-card {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #111827;
+      text-align: center;
+    }
+
+    .login-card p.subtitle {
+      font-size: 0.875rem;
+      color: #6b7280;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-options label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #4b5563;
+      cursor: pointer;
+    }
+
+    .form-options a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .form-options a:hover {
+      text-decoration: underline;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #1d4ed8;
+    }
+
+    .message {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      text-align: center;
+      min-height: 1.25rem;
+    }
+
+    .message.success {
+      color: #059669;
+    }
+
+    .message.error {
+      color: #dc2626;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="login-card">
+    <h1>Welcome Back</h1>
+    <p class="subtitle">Please enter your details to sign in</p>
+
+    <form id="loginForm" action="/login" method="POST">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="you@example.com" 
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          minlength="6"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <div class="form-options">
+        <label>
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+        <a href="#forgot-password">Forgot password?</a>
+      </div>
+
+      <button type="submit">Sign In</button>
+      <div id="statusMessage" class="message" role="alert"></div>
+    </form>
+  </main>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const statusMessage = document.getElementById('statusMessage');
+
+    // Demo credentials for testing in the browser
+    const DEMO_EMAIL = 'user@example.com';
+    const DEMO_PASSWORD = 'password123';
+
+    loginForm.addEventListener('submit', function (event) {
+      // Prevent default page reload so you can test locally without a backend
+      event.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+        statusMessage.textContent = 'Login successful! Redirecting...';
+        statusMessage.className = 'message success';
+      } else {
+        statusMessage.textContent = 'Invalid credentials. Try user@example.com / password123';
+        statusMessage.className = 'message error';
+      }
+    });
+  </script>
+
+</body>
+</html>
+
